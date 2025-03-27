@@ -79,6 +79,6 @@ AttaqueSpeciale ^-- Soin
 Statut ^-up- Gel
 
 Canard "1" -left-> TypeCanard
-Canard "*" -up- Statut
+Canard "1" -up- "*" Statut
 Canard "1" -right- "1" AttaqueSpeciale
 @enduml
