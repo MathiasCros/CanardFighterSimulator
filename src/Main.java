@@ -1,6 +1,7 @@
 package src;
 
-import java.util.Scanner;
+import src.canard.Canard;
+import src.canard.CanardEau;
 
 public class Main {
     public static void main(String[] args) {

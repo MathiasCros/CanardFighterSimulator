@@ -6,16 +6,49 @@ enum TypeCanard {
     EAU, FEU, GLACE, VENT
 }
 
+abstract class AttaqueSpeciale {
+    -utilisateur: Canard
+    -utilisee: boolean
+    +AttaqueSpeciale(utilisateur: Canard)
+    +utiliserAttaque(cible: Canard)
+}
+
+class BoostAttaque {
+    -quantite: int
+    -addition: boolean
+    +BoostAttaque(utilisateur: Canard, quantite: int, addition: boolean)
+}
+
+class Geler {
+}
+
+class Soin {
+    -quantite: int
+    +Soin(utilisateur: Canard, quantite: int)
+}
+
+abstract class Statut {
+    -toursActifs: int
+    -hote: Canard
+    +Statut(toursActifs: int, hote: Canard)
+    +activerEffet()
+}
+
+class Gel {
+}
+
 abstract class Canard {
     -nom: String
     -type: TypeCanard
     -pointsVie: int
     -pointsAttaque: int
+    -attaqueSpeciale: AttaqueSpeciale
     +Canard(nom: String, pointsVie: int, pointsAttaque: int)
     +attaquer(cible: Canard)
     +activerAttaqueSpeciale(cible: Canard)
     +subirDegats(degats: int)
     +estKO() : boolean
+    +reinitAttaque()
 }
 
 class CanardEau {
@@ -39,5 +72,13 @@ Canard ^-- CanardFeu
 Canard ^-- CanardGlace
 Canard ^-- CanardVent
 
+AttaqueSpeciale ^-- BoostAttaque
+AttaqueSpeciale ^-- Geler
+AttaqueSpeciale ^-- Soin
+
+Statut ^-up- Gel
+
 Canard "1" -left-> TypeCanard
+Canard "*" -up- Statut
+Canard "1" -right- "1" AttaqueSpeciale
 @enduml
