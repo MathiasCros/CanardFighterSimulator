@@ -1,0 +1,43 @@
+@startuml class-diagram
+
+' Je n'ai pas ajouté les getter et setter pour simplifier le schéma
+
+enum TypeCanard {
+    EAU, FEU, GLACE, VENT
+}
+
+abstract class Canard {
+    -nom: String
+    -type: TypeCanard
+    -pointsVie: int
+    -pointsAttaque: int
+    +Canard(nom: String, pointsVie: int, pointsAttaque: int)
+    +attaquer(cible: Canard)
+    +activerAttaqueSpeciale(cible: Canard)
+    +subirDegats(degats: int)
+    +estKO() : boolean
+}
+
+class CanardEau {
+
+}
+
+class CanardFeu {
+    
+}
+
+class CanardGlace {
+    
+}
+
+class CanardVent {
+    
+}
+
+Canard ^-- CanardEau
+Canard ^-- CanardFeu
+Canard ^-- CanardGlace
+Canard ^-- CanardVent
+
+Canard "1" -left-> TypeCanard
+@enduml
